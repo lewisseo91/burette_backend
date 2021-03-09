@@ -1,10 +1,10 @@
-package com.burette.burette;
+package com.takeon.buretteArticle;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class BuretteApplicationTests {
+class BuretteArticleApplicationTests {
 
 	@Test
 	void contextLoads() {

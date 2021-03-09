@@ -1,13 +1,13 @@
-package com.burette.burette;
+package com.takeon.buretteArticle;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class BuretteApplication {
+public class BuretteArticleApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(BuretteApplication.class, args);
+		SpringApplication.run(BuretteArticleApplication.class, args);
 	}
 
 }
