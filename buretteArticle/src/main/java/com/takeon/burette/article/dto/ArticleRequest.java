@@ -1,4 +1,4 @@
-package com.takeon.burette.article;
+package com.takeon.burette.article.dto;
 
 import java.util.List;
 
@@ -19,5 +19,33 @@ public class ArticleRequest {
         this.contents = contents;
         this.tags = tags;
         this.category = category;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getSubTitle() {
+        return subTitle;
+    }
+
+    public List<String> getThumbnail() {
+        return thumbnail;
+    }
+
+    public String getContents() {
+        return contents;
+    }
+
+    public List<String> getTags() {
+        return tags;
+    }
+
+    public int getCategory() {
+        return category;
     }
 }
