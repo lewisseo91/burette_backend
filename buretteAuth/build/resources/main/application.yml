@@ -1,0 +1,5 @@
+security:
+  jwt:
+    token:
+      s: dslakjgflkdsajglkdasjglkdsajgdsakljgdslasdklgjdsasdlkgjdsasd213001984lkdsjaglkdsaj2109481098dslkajglkdsaj120948120948dslkajglkdsja
+      e: 2592000000
