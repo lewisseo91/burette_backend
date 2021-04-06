@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.takeon.burette.auth.infrastructure.JwtTokenProviderTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-04-06T13:56:23" hostname="DESKTOP-8ECGVQH" time="0.193">
-  <properties/>
-  <testcase name="validateToken()" classname="com.takeon.burette.auth.infrastructure.JwtTokenProviderTest" time="0.193"/>
-  <system-out><![CDATA[invalid token
-]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>
