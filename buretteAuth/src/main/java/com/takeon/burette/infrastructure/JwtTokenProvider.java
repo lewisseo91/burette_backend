@@ -11,7 +11,7 @@ import java.util.Date;
 public class JwtTokenProvider {
 
 //    @Value("${security.jwt.token.s}")
-    private static String secretKey = "dlksagjlkdsajglkdsasdjgdasd";
+    private String secretKey = "dlksagjlkdsajglkdsasdjgdasd";
 
 //    @Value("${security.jwt.token.e}")
     private long expireLengthInMilliSecond = 2592000000L;
