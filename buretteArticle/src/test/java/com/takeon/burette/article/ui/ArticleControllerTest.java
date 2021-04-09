@@ -1,4 +1,4 @@
-package com.takeon.burette.article;
+package com.takeon.burette.article.ui;
 
 import com.takeon.burette.article.dto.ArticleCreateRequest;
 import com.takeon.burette.article.dto.ArticleDeleteRequest;
