@@ -22,6 +22,10 @@ dependencies {
 	testImplementation 'io.rest-assured:json-path:4.2.0'
 	testImplementation 'io.rest-assured:xml-path:4.2.0'
 	testImplementation 'io.rest-assured:rest-assured-common:4.2.0'
+
+//	implementation 'org.apache.httpcomponents:httpclient'
+//	implementation 'org.apache.httpcomponents:httpmime'
+
 }
 
 test {

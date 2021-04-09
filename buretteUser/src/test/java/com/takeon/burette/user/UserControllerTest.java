@@ -1,5 +1,6 @@
 package com.takeon.burette.user;
 
+import com.takeon.burette.user.dto.UserRequest;
 import io.restassured.RestAssured;
 import io.restassured.response.ExtractableResponse;
 import io.restassured.response.Response;
@@ -24,13 +25,17 @@ public class UserControllerTest extends AcceptanceTest {
 
     @Test
     void createUserTest() {
+        UserRequest userRequest = new UserRequest("abcd123", "123456", "abc" , "abc", "000", "000", 0, 0);
+
         ExtractableResponse<Response> res = RestAssured
                 .given().log().all()
                 .contentType("application/json")
-                .body("{\"title\": \"Effective Java\", \"isbn\":\"978-0-13-468599-1\", \"author\":\"Joshua Bloch\"}")
+//                .body("{\"userId\": \"Effective Java\", \"isbn\":\"978-0-13-468599-1\", \"author\":\"Joshua Bloch\"}")
+                .body(userRequest)
                 .when().post("/user/create")
                 .then().log().all()
                 .extract();
         assertThat(res.statusCode()).isEqualTo(HttpStatus.OK.value());
     }
+
 }

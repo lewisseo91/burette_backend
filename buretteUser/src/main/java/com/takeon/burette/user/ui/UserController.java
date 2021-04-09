@@ -1,5 +1,7 @@
 package com.takeon.burette.user.ui;
 
+import com.takeon.burette.user.dto.LoginRequest;
+import com.takeon.burette.user.dto.LoginResponse;
 import com.takeon.burette.user.dto.UserRequest;
 import com.takeon.burette.user.application.UserService;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +20,8 @@ public class UserController {
 
     @GetMapping("/test")
     public ResponseEntity Test () {
-     return ResponseEntity.ok().build();
+        String body = "Hello, world!";
+        return ResponseEntity.ok().body(body);
     }
 
     @PostMapping("/create")
@@ -29,7 +32,14 @@ public class UserController {
         return ResponseEntity.ok().build();
     }
 
-
-
+    @PostMapping("/login")
+    public ResponseEntity loginUser(@RequestBody LoginRequest loginRequest) {
+        String token = userService.loginUser(loginRequest);
+        if( token == null ) {
+            return ResponseEntity.badRequest().build();
+        }
+        LoginResponse loginResponse = new LoginResponse(token);
+        return ResponseEntity.ok().body(loginResponse);
+    }
 
 }
