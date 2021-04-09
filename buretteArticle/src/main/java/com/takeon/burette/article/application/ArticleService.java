@@ -5,6 +5,8 @@ import com.takeon.burette.article.dao.ArticleDao;
 import com.takeon.burette.article.dto.*;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ArticleService {
 
@@ -28,6 +30,11 @@ public class ArticleService {
     public ArticleReadResponse getById(ArticleReadRequest articleReadRequest) {
         Article article = articleDao.getById(articleReadRequest);
         return new ArticleReadResponse(article);
+    }
+
+    public ArticleListResponse getLatestArticlesByCategory() {
+        List<Article> articleList = articleDao.getLatestArticlesByCategory();
+        return new ArticleListResponse(articleList);
     }
 
 

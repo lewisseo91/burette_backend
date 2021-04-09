@@ -85,4 +85,15 @@ public class ArticleControllerTest extends AcceptanceTest {
                 .extract();
         assertThat(res.statusCode()).isEqualTo(HttpStatus.OK.value());
     }
+
+    @Test
+    void getLatestCategoryTest() {
+        ExtractableResponse<Response> res = RestAssured
+                .given().log().all()
+                .contentType("application/json")
+                .when().post("/article/latest_category")
+                .then().log().all()
+                .extract();
+        assertThat(res.statusCode()).isEqualTo(HttpStatus.OK.value());
+    }
 }

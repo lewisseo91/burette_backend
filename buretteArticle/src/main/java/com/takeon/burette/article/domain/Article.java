@@ -13,7 +13,7 @@ public class Article {
     private String thumbnail; // List<String> 가능성 있음
     private String contents;
     private String tags;
-    private int category;
+    private int categoryId;
 
     private static final int CONTENTS_LIMIT = 10000;
     private static final int TITLE_LIMIT = 250;
@@ -28,12 +28,22 @@ public class Article {
         this.thumbnail = parseString(articleCreateRequest.getThumbnail());
         this.contents = articleCreateRequest.getContents();
         this.tags = parseString(articleCreateRequest.getTags());
-        this.category = articleCreateRequest.getCategory();
+        this.categoryId = articleCreateRequest.getCategory();
 
         if( !validArticle(this) ) {
             throw new InvalidArticleException();
         }
 
+    }
+
+    public Article(int type, String title, String subTitle, String thumbnail, String contents, String tags, int categoryId) {
+        this.type = type;
+        this.title = title;
+        this.subTitle = subTitle;
+        this.thumbnail = thumbnail;
+        this.contents = contents;
+        this.tags = tags;
+        this.categoryId = categoryId;
     }
 
     private String parseString( List<String> str ) {
@@ -76,7 +86,7 @@ public class Article {
         return tags;
     }
 
-    public int getCategory() {
-        return category;
+    public int getCategoryId() {
+        return categoryId;
     }
 }

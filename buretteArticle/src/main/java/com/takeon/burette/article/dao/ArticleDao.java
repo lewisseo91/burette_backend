@@ -1,14 +1,20 @@
 package com.takeon.burette.article.dao;
 
 import com.takeon.burette.article.domain.Article;
+import com.takeon.burette.article.dto.ArticleCreateRequest;
 import com.takeon.burette.article.dto.ArticleDeleteRequest;
 import com.takeon.burette.article.dto.ArticleReadRequest;
+import org.springframework.asm.TypeReference;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 @Repository
 public class ArticleDao {
@@ -29,7 +35,7 @@ public class ArticleDao {
             preparedStatement.setString(4, article.getThumbnail());
             preparedStatement.setString(5, article.getContents());
             preparedStatement.setString(6, article.getTags());
-            preparedStatement.setInt(7, article.getCategory());
+            preparedStatement.setInt(7, article.getCategoryId());
             return preparedStatement;
         }, keyHolder); // INSERT, UPDATE
         // STRING 구분자 , 같은거 넣을까 생각 중 좋진 않아
@@ -44,6 +50,33 @@ public class ArticleDao {
     public Article getById(ArticleReadRequest articleReadRequest) {
         String sql = "SELECT * FROM ARTICLE WHERE id = ?";
         return jdbcTemplate.queryForObject(sql, Article.class, articleReadRequest.getId());
+    }
+
+    public List<Article> getLatestArticlesByCategory() {
+        String sql = "SELECT * FROM ARTICLE WHERE id IN ( SELECT MAX(id) FROM ARTICLE GROUP BY categoryId )";
+        List<Article> result = new ArrayList<>();
+        jdbcTemplate.update(connection -> {
+            try (PreparedStatement stmt = connection.prepareStatement(sql)){
+                try(ResultSet rs = stmt.executeQuery()) {
+                    while(rs.next()) {
+                        Article article = new Article(
+                                rs.getInt("type"),
+                                rs.getString("title"),
+                                rs.getString("subTitle"),
+                                rs.getString("thumbnail"),
+                                rs.getString("contents"),
+                                rs.getString("tags"),
+                                rs.getInt("categoryId")
+                        );
+
+                        result.add(article);
+                    }
+                }
+                return stmt;
+            }
+        });
+        return result;
+//        return jdbcTemplate.query(sql);
     }
 
 }

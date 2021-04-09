@@ -36,7 +36,13 @@ public class ArticleController {
     @PostMapping("/get")
     public ResponseEntity getArticle(@RequestBody ArticleReadRequest articleReadRequest) {
         ArticleReadResponse articleReadResponse = articleService.getById(articleReadRequest);
-        return ResponseEntity.ok().body(articleReadResponse.toString());
+        return ResponseEntity.ok().body(articleReadResponse.getArticle());
+    }
+
+    @PostMapping("/latest_category")
+    public ResponseEntity getLatestCategory() {
+        ArticleListResponse articleReadResponse = articleService.getLatestArticlesByCategory();
+        return ResponseEntity.ok().body(articleReadResponse.getArticleList());
     }
 
 
