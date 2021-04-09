@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Article {
+    private long id;
+
     private int type;
     private String title;
     private String subTitle;
@@ -51,6 +53,8 @@ public class Article {
         if(tags.length() > TAGS_LIMIT) return false;
         return true;
     }
+
+    public long getId() { return id; }
 
     public int getType() {
         return type;

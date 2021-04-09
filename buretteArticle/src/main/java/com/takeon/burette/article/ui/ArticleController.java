@@ -19,7 +19,6 @@ public class ArticleController {
 
     @GetMapping("/test")
     public ResponseEntity Test () {
-        System.out.println("testsetestes");
         return ResponseEntity.ok().build();
     }
 
@@ -32,6 +31,39 @@ public class ArticleController {
         return ResponseEntity.ok().build();
         //return ResponseEntity.created(URI.create("/" + articleResponse.getId())).body(articleResponse);
     }
+
+    @PostMapping("/delete")
+    public ResponseEntity deleteArticle(@RequestBody ArticleRequest articleRequest) {
+        // 등록 동작
+        // db 등록
+        ArticleResponse articleResponse = articleService.saveArticle(articleRequest);
+        System.out.println(articleResponse.getId());
+        return ResponseEntity.ok().build();
+        //return ResponseEntity.created(URI.create("/" + articleResponse.getId())).body(articleResponse);
+    }
+
+
+    @PostMapping("/search")
+    public ResponseEntity searchArticle(@RequestBody ArticleRequest articleRequest) {
+        // 등록 동작
+        // db 등록
+        ArticleResponse articleResponse = articleService.saveArticle(articleRequest);
+        System.out.println(articleResponse.getId());
+        return ResponseEntity.ok().build();
+        //return ResponseEntity.created(URI.create("/" + articleResponse.getId())).body(articleResponse);
+    }
+
+
+    @PostMapping("/update")
+    public ResponseEntity updateArticle(@RequestBody ArticleRequest articleRequest) {
+        // 등록 동작
+        // db 등록
+        ArticleResponse articleResponse = articleService.saveArticle(articleRequest);
+        System.out.println(articleResponse.getId());
+        return ResponseEntity.ok().build();
+        //return ResponseEntity.created(URI.create("/" + articleResponse.getId())).body(articleResponse);
+    }
+
 
 
 }
