@@ -4,6 +4,8 @@ import com.takeon.burette.article.domain.Article;
 import com.takeon.burette.article.dao.ArticleDao;
 import com.takeon.burette.article.dto.ArticleCreateRequest;
 import com.takeon.burette.article.dto.ArticleCreateResponse;
+import com.takeon.burette.article.dto.ArticleDeleteRequest;
+import com.takeon.burette.article.dto.ArticleDeleteResponse;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -21,9 +23,9 @@ public class ArticleService {
         return new ArticleCreateResponse(articleId);
    }
 
-    public ArticleCreateResponse deleteById(int id) {
-        int articleId = articleDao.deleteById(id); // article
-        return new ArticleCreateResponse(articleId);
+    public ArticleDeleteResponse deleteById(ArticleDeleteRequest articleDeleteRequest) {
+        boolean isDeleted = articleDao.deleteById(articleDeleteRequest);
+        return new ArticleDeleteResponse(isDeleted);
     }
 
 
