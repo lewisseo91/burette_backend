@@ -8,5 +8,5 @@ CREATE TABLE USER (
       phoneNumber VARCHAR(250) DEFAULT NULL,
       birthDay DATE,
       gender INT DEFAULT 0,
-      writePermission INT DEFAULT 0,
+      writePermission INT DEFAULT 0
 );

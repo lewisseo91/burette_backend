@@ -26,21 +26,11 @@ public class AuthClient {
     }
 
     public String getToken(String id) {
-        return "token";
-//        ResponseEntity<String> response = restTemplate.getForEntity(BASE_URL + PORT + GET_TOKEN_MAPPING + id , String.class);
-//        if (response.getStatusCode() == HttpStatus.OK) {
-//            return response.getBody();
-//        }
-//        return null;
+        ResponseEntity<String> response = restTemplate.getForEntity(BASE_URL + PORT + GET_TOKEN_MAPPING + id , String.class);
+        if (response.getStatusCode() == HttpStatus.OK) {
+            return response.getBody();
+        }
+        return null;
     }
-
-//    public int test2() {
-//        String baseURL = "localhost:8091/user/test";
-//        ExtractableResponse<Response> res = RestAssured
-//                .given().log().all()
-//                .when().get("/user/test")
-//                .then().log().all()
-//                .extract();
-//    }
 
 }

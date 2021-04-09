@@ -26,7 +26,9 @@ public class ArticleControllerTest extends AcceptanceTest {
     void createArticleTest() {
         ExtractableResponse<Response> res = RestAssured
                 .given().log().all()
-                .when().get("/article/create")
+                .contentType("application/json")
+                .body("{\"title\": \"asdfdsafdsa\", \"subTtile\" : \"absadfda\", \"thumbnail\" : \"[\"dafsda\"]\"}")
+                .when().post("/article/create")
                 .then().log().all()
                 .extract();
         assertThat(res.statusCode()).isEqualTo(HttpStatus.OK.value());
