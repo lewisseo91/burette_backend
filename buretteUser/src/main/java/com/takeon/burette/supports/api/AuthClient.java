@@ -2,13 +2,12 @@ package com.takeon.burette.supports.api;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 
 public class AuthClient {
 
-    private static final String BASE_URL = "http://localhost";
+    private static final String LOCAL_HOST = "http://localhost";
     private static final String PORT = ":8092";
     private static final String GET_TOKEN_MAPPING = "/auth/create/";
     private static final String GET_USER_ID_MAPPING = "/auth/valid/";
@@ -27,7 +26,7 @@ public class AuthClient {
     }
 
     public String getToken(String id) {
-        ResponseEntity<String> response = restTemplate.getForEntity(BASE_URL + PORT + GET_TOKEN_MAPPING + id , String.class);
+        ResponseEntity<String> response = restTemplate.getForEntity(LOCAL_HOST + PORT + GET_TOKEN_MAPPING + id , String.class);
         if (response.getStatusCode() == HttpStatus.OK) {
             return response.getBody();
         }
@@ -35,7 +34,7 @@ public class AuthClient {
     }
 
     public String getUserId(String token) {
-        ResponseEntity<String> response = restTemplate.getForEntity(BASE_URL + PORT + GET_USER_ID_MAPPING + token , String.class);
+        ResponseEntity<String> response = restTemplate.getForEntity(LOCAL_HOST + PORT + GET_USER_ID_MAPPING + token , String.class);
         if (response.getStatusCode() == HttpStatus.OK) {
             return response.getBody();
         }
