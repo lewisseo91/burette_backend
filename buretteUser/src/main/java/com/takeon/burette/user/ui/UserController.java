@@ -2,6 +2,7 @@ package com.takeon.burette.user.ui;
 
 import com.takeon.burette.user.dto.LoginRequest;
 import com.takeon.burette.user.dto.LoginResponse;
+import com.takeon.burette.user.dto.TokenRequest;
 import com.takeon.burette.user.dto.UserRequest;
 import com.takeon.burette.user.application.UserService;
 import org.springframework.http.ResponseEntity;
@@ -40,6 +41,12 @@ public class UserController {
         }
         LoginResponse loginResponse = new LoginResponse(token);
         return ResponseEntity.ok().body(loginResponse);
+    }
+
+    @PostMapping("/writable")
+    public ResponseEntity isWritable(@RequestBody TokenRequest tokenRequest) {
+        boolean isWritable = userService.isWritable(tokenRequest);
+        return isWritable ? ResponseEntity.ok().build() : ResponseEntity.status(401).build();
     }
 
 }

@@ -1,6 +1,7 @@
 package com.takeon.burette.user.dao;
 
 import com.takeon.burette.user.dto.LoginRequest;
+import com.takeon.burette.user.dto.TokenRequest;
 import com.takeon.burette.user.dto.UserRequest;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -45,6 +46,11 @@ public class UserDao {
     public boolean findIdAndPassword(LoginRequest loginRequest) {
         String sql = "SELECT EXISTS (SELECT id FROM USER WHERE userId = ? AND password = ?)";
         return jdbcTemplate.queryForObject(sql, Boolean.class, loginRequest.getUserId(), loginRequest.getPassword());
+    }
+
+    public int getWritePermission(String id) {
+        String sql = "SELECT writePermission FROM USER Where userId = ?";
+        return jdbcTemplate.queryForObject(sql, Integer.class, id);
     }
 
     private Date convertStringToDate(String birthday) {

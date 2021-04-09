@@ -11,6 +11,7 @@ public class AuthClient {
     private static final String BASE_URL = "http://localhost";
     private static final String PORT = ":8092";
     private static final String GET_TOKEN_MAPPING = "/auth/create/";
+    private static final String GET_USER_ID_MAPPING = "/auth/valid/";
 
     private RestTemplate restTemplate;
 
@@ -27,6 +28,14 @@ public class AuthClient {
 
     public String getToken(String id) {
         ResponseEntity<String> response = restTemplate.getForEntity(BASE_URL + PORT + GET_TOKEN_MAPPING + id , String.class);
+        if (response.getStatusCode() == HttpStatus.OK) {
+            return response.getBody();
+        }
+        return null;
+    }
+
+    public String getUserId(String token) {
+        ResponseEntity<String> response = restTemplate.getForEntity(BASE_URL + PORT + GET_USER_ID_MAPPING + token , String.class);
         if (response.getStatusCode() == HttpStatus.OK) {
             return response.getBody();
         }
