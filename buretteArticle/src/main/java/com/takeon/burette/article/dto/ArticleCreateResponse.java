@@ -3,10 +3,10 @@ package com.takeon.burette.article.dto;
 import java.util.List;
 
 // DTO
-public class ArticleResponse {
+public class ArticleCreateResponse {
     private int id;
 
-    public ArticleResponse(int id) {
+    public ArticleCreateResponse(int id) {
         this.id = id;
     }
 

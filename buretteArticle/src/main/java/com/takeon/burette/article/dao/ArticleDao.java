@@ -34,12 +34,12 @@ public class ArticleDao {
         return keyHolder.getKey().intValue();
     }
 
-    public int deleteById(Article article) {
+    public int deleteById(int id) {
         String sql = "DELETE FROM ARTICLE WHERE id = ?";
         KeyHolder keyHolder = new GeneratedKeyHolder();
         jdbcTemplate.update(connection -> {
             PreparedStatement preparedStatement = connection.prepareStatement(sql, new String[]{"id"});
-            preparedStatement.setLong(1, article.getId());
+            preparedStatement.setInt(1, id);
             return preparedStatement;
         }, keyHolder); // INSERT, UPDATE
         // STRING 구분자 , 같은거 넣을까 생각 중 좋진 않아

@@ -1,8 +1,8 @@
 package com.takeon.burette.article.ui;
 
 import com.takeon.burette.article.application.ArticleService;
-import com.takeon.burette.article.dto.ArticleRequest;
-import com.takeon.burette.article.dto.ArticleResponse;
+import com.takeon.burette.article.dto.ArticleCreateRequest;
+import com.takeon.burette.article.dto.ArticleCreateResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,43 +23,43 @@ public class ArticleController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity createArticle(@RequestBody ArticleRequest articleRequest) {
+    public ResponseEntity createArticle(@RequestBody ArticleCreateRequest articleCreateRequest) {
         // 등록 동작
         // db 등록
-        ArticleResponse articleResponse = articleService.saveArticle(articleRequest);
-        System.out.println(articleResponse.getId());
+        ArticleCreateResponse articleCreateResponse = articleService.saveArticle(articleCreateRequest);
+        System.out.println(articleCreateResponse.getId());
         return ResponseEntity.ok().build();
         //return ResponseEntity.created(URI.create("/" + articleResponse.getId())).body(articleResponse);
     }
 
     @PostMapping("/delete")
-    public ResponseEntity deleteArticle(@RequestBody ArticleRequest articleRequest) {
+    public ResponseEntity deleteArticle(@RequestBody int articleId) {
         // 등록 동작
         // db 등록
-        ArticleResponse articleResponse = articleService.saveArticle(articleRequest);
-        System.out.println(articleResponse.getId());
+        ArticleCreateResponse articleCreateResponse = articleService.deleteById(articleId);
+        System.out.println(articleCreateResponse.getId());
         return ResponseEntity.ok().build();
         //return ResponseEntity.created(URI.create("/" + articleResponse.getId())).body(articleResponse);
     }
 
 
     @PostMapping("/search")
-    public ResponseEntity searchArticle(@RequestBody ArticleRequest articleRequest) {
+    public ResponseEntity searchArticle(@RequestBody ArticleCreateRequest articleCreateRequest) {
         // 등록 동작
         // db 등록
-        ArticleResponse articleResponse = articleService.saveArticle(articleRequest);
-        System.out.println(articleResponse.getId());
+        ArticleCreateResponse articleCreateResponse = articleService.saveArticle(articleCreateRequest);
+        System.out.println(articleCreateResponse.getId());
         return ResponseEntity.ok().build();
         //return ResponseEntity.created(URI.create("/" + articleResponse.getId())).body(articleResponse);
     }
 
 
     @PostMapping("/update")
-    public ResponseEntity updateArticle(@RequestBody ArticleRequest articleRequest) {
+    public ResponseEntity updateArticle(@RequestBody ArticleCreateRequest articleCreateRequest) {
         // 등록 동작
         // db 등록
-        ArticleResponse articleResponse = articleService.saveArticle(articleRequest);
-        System.out.println(articleResponse.getId());
+        ArticleCreateResponse articleCreateResponse = articleService.saveArticle(articleCreateRequest);
+        System.out.println(articleCreateResponse.getId());
         return ResponseEntity.ok().build();
         //return ResponseEntity.created(URI.create("/" + articleResponse.getId())).body(articleResponse);
     }

@@ -2,8 +2,8 @@ package com.takeon.burette.article.application;
 
 import com.takeon.burette.article.domain.Article;
 import com.takeon.burette.article.dao.ArticleDao;
-import com.takeon.burette.article.dto.ArticleRequest;
-import com.takeon.burette.article.dto.ArticleResponse;
+import com.takeon.burette.article.dto.ArticleCreateRequest;
+import com.takeon.burette.article.dto.ArticleCreateResponse;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -15,11 +15,16 @@ public class ArticleService {
         this.articleDao = articleDao;
     }
 
-    public ArticleResponse saveArticle(ArticleRequest articleRequest) {
-        Article article = new Article(articleRequest);
+    public ArticleCreateResponse saveArticle(ArticleCreateRequest articleCreateRequest) {
+        Article article = new Article(articleCreateRequest);
         int articleId = articleDao.save(article); // article
-        return new ArticleResponse(articleId);
+        return new ArticleCreateResponse(articleId);
    }
+
+    public ArticleCreateResponse deleteById(int id) {
+        int articleId = articleDao.deleteById(id); // article
+        return new ArticleCreateResponse(articleId);
+    }
 
 
 }
