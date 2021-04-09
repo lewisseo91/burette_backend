@@ -23,6 +23,7 @@ public class AuthClient {
         String response = restTemplate.getForObject(baseURL, String.class);
 
         return response;
+
     }
 
     public String getToken(String id) {
