@@ -2,6 +2,7 @@ package com.takeon.burette.article.dao;
 
 import com.takeon.burette.article.domain.Article;
 import com.takeon.burette.article.dto.ArticleDeleteRequest;
+import com.takeon.burette.article.dto.ArticleReadRequest;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
@@ -38,6 +39,11 @@ public class ArticleDao {
     public boolean deleteById(ArticleDeleteRequest articleDeleteRequest) {
         String sql = "DELETE FROM ARTICLE WHERE id = ?";
         return jdbcTemplate.queryForObject(sql, Boolean.class, articleDeleteRequest.getId());
+    }
+
+    public Article getById(ArticleReadRequest articleReadRequest) {
+        String sql = "SELECT * FROM ARTICLE WHERE id = ?";
+        return jdbcTemplate.queryForObject(sql, Article.class, articleReadRequest.getId());
     }
 
 }

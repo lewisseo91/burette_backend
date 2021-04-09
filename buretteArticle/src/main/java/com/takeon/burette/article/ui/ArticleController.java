@@ -1,10 +1,7 @@
 package com.takeon.burette.article.ui;
 
 import com.takeon.burette.article.application.ArticleService;
-import com.takeon.burette.article.dto.ArticleCreateRequest;
-import com.takeon.burette.article.dto.ArticleCreateResponse;
-import com.takeon.burette.article.dto.ArticleDeleteRequest;
-import com.takeon.burette.article.dto.ArticleDeleteResponse;
+import com.takeon.burette.article.dto.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -36,6 +33,12 @@ public class ArticleController {
     public ResponseEntity deleteArticle(@RequestBody ArticleDeleteRequest articleDeleteRequest) {
         ArticleDeleteResponse articleDeleteResponse = articleService.deleteById(articleDeleteRequest);
         return ResponseEntity.ok().body(articleDeleteResponse.isDeleted());
+    }
+
+    @PostMapping("/get")
+    public ResponseEntity getArticle(@RequestBody ArticleReadRequest articleReadRequest) {
+        ArticleReadResponse articleReadResponse = articleService.getById(articleReadRequest);
+        return ResponseEntity.ok().body(articleReadResponse.toString());
     }
 
 

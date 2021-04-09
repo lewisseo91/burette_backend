@@ -2,6 +2,7 @@ package com.takeon.burette.article;
 
 import com.takeon.burette.article.dto.ArticleCreateRequest;
 import com.takeon.burette.article.dto.ArticleDeleteRequest;
+import com.takeon.burette.article.dto.ArticleReadRequest;
 import io.restassured.RestAssured;
 import io.restassured.response.ExtractableResponse;
 import io.restassured.response.Response;
@@ -70,5 +71,18 @@ public class ArticleControllerTest extends AcceptanceTest {
                 .extract();
         assertThat(res2.statusCode()).isEqualTo(HttpStatus.OK.value());
         System.out.println(res2.body());
+    }
+
+    @Test
+    void getArticleTest() {
+        ArticleReadRequest articleReadRequest = new ArticleReadRequest(1);
+        ExtractableResponse<Response> res = RestAssured
+                .given().log().all()
+                .contentType("application/json")
+                .body(articleReadRequest)
+                .when().post("/article/get")
+                .then().log().all()
+                .extract();
+        assertThat(res.statusCode()).isEqualTo(HttpStatus.OK.value());
     }
 }
