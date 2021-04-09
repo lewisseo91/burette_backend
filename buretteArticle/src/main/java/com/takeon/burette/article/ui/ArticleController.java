@@ -23,8 +23,6 @@ public class ArticleController {
 
     @PostMapping("/create")
     public ResponseEntity createArticle(@RequestBody ArticleCreateRequest articleCreateRequest) {
-        // 등록 동작
-        // db 등록
         ArticleCreateResponse articleCreateResponse = articleService.saveArticle(articleCreateRequest);
         return ResponseEntity.ok().body(articleCreateResponse.getId());
     }
