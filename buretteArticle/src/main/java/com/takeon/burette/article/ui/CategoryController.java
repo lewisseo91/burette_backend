@@ -1,8 +1,6 @@
 package com.takeon.burette.article.ui;
 
 import com.takeon.burette.article.application.CategoryService;
-import com.takeon.burette.article.dto.ArticleCreateRequest;
-import com.takeon.burette.article.dto.ArticleCreateResponse;
 import com.takeon.burette.article.dto.CategoryRequest;
 import com.takeon.burette.article.dto.CategoryResponse;
 import org.springframework.http.ResponseEntity;

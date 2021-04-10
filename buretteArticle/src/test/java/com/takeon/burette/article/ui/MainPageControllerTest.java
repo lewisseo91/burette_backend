@@ -7,6 +7,7 @@ import io.restassured.response.ExtractableResponse;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +21,7 @@ public class MainPageControllerTest extends AcceptanceTest {
         MainPageRequest mainPageRequest = new MainPageRequest(1);
         ExtractableResponse<Response> res = RestAssured
                 .given().log().all()
-                .contentType("application/json")
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
                 .when().get("/main/test")
                 .then().log().all()
                 .extract();
@@ -33,7 +34,7 @@ public class MainPageControllerTest extends AcceptanceTest {
         MainPageRequest mainPageRequest = new MainPageRequest(1);
         ExtractableResponse<Response> res = RestAssured
                 .given().log().all()
-                .contentType("application/json")
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
                 .body(mainPageRequest)
                 .when().post("/main/create")
                 .then().log().all()

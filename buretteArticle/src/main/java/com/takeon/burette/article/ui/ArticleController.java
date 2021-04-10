@@ -3,7 +3,6 @@ package com.takeon.burette.article.ui;
 import com.takeon.burette.article.application.ArticleService;
 import com.takeon.burette.article.dto.*;
 import com.takeon.burette.supports.api.UserClient;
-import org.apache.catalina.User;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,58 +25,34 @@ public class ArticleController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity createArticle(@RequestBody ArticleCreateRequest articleCreateRequest, @RequestHeader (name="Authorization") String token) {
-        boolean isWritable = userClient.isWritable(token);
-        if(!isWritable) {
+    public ResponseEntity createArticle(@RequestBody ArticleRequest articleRequest, @RequestHeader (name="Authorization") String token) {
+        if(!userClient.isWritable(token)) {
             return ResponseEntity.status(401).build();
         }
-        ArticleCreateResponse articleCreateResponse = articleService.saveArticle(articleCreateRequest);
-        return ResponseEntity.ok().body(articleCreateResponse.getId());
+        ArticleResponse articleResponse = articleService.saveArticle(articleRequest);
+        return ResponseEntity.ok().body(articleResponse.getId());
     }
 
     @PostMapping("/delete")
-    public ResponseEntity deleteArticle(@RequestBody ArticleDeleteRequest articleDeleteRequest, @RequestHeader (name="Authorization") String token) {
-        boolean isWritable = userClient.isWritable(token);
-        if(!isWritable) {
+    public ResponseEntity deleteArticle(@RequestBody ArticleRequest articleRequest, @RequestHeader (name="Authorization") String token) {
+        if(!userClient.isWritable(token)) {
             return ResponseEntity.status(401).build();
         }
-        ArticleDeleteResponse articleDeleteResponse = articleService.deleteById(articleDeleteRequest);
-        return ResponseEntity.ok().build();
+        boolean isDeleted = articleService.deleteById(articleRequest);
+        return isDeleted ? ResponseEntity.ok().build() : ResponseEntity.badRequest().build();
     }
 
     @PostMapping("/get")
-    public ResponseEntity getArticle(@RequestBody ArticleReadRequest articleReadRequest) {
-        ArticleReadResponse articleReadResponse = articleService.getById(articleReadRequest);
-        return ResponseEntity.ok().body(articleReadResponse.getArticle());
+    public ResponseEntity getArticle(@RequestBody ArticleRequest articleRequest) {
+        ArticleResponse articleResponse = articleService.getById(articleRequest);
+        return ResponseEntity.ok().body(articleResponse.getArticle());
     }
 
     @PostMapping("/latest_category")
     public ResponseEntity getLatestCategory() {
-        ArticleListResponse articleReadResponse = articleService.getLatestArticlesByCategory();
-        return ResponseEntity.ok().body(articleReadResponse.getArticleList());
+        ArticleResponse articleResponse = articleService.getLatestArticlesByCategory();
+        return ResponseEntity.ok().body(articleResponse.getArticleList());
     }
-
-
-//    @PostMapping("/search")
-//    public ResponseEntity searchArticle(@RequestBody ArticleCreateRequest articleCreateRequest) {
-//        // 등록 동작
-//        // db 등록
-//        ArticleCreateResponse articleCreateResponse = articleService.saveArticle(articleCreateRequest);
-//        System.out.println(articleCreateResponse.getId());
-//        return ResponseEntity.ok().build();
-//        //return ResponseEntity.created(URI.create("/" + articleResponse.getId())).body(articleResponse);
-//    }
-//
-//
-//    @PostMapping("/update")
-//    public ResponseEntity updateArticle(@RequestBody ArticleCreateRequest articleCreateRequest) {
-//        // 등록 동작
-//        // db 등록
-//        ArticleCreateResponse articleCreateResponse = articleService.saveArticle(articleCreateRequest);
-//        System.out.println(articleCreateResponse.getId());
-//        return ResponseEntity.ok().build();
-//        //return ResponseEntity.created(URI.create("/" + articleResponse.getId())).body(articleResponse);
-//    }
 
 
 

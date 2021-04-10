@@ -16,26 +16,24 @@ public class ArticleService {
         this.articleDao = articleDao;
     }
 
-    public ArticleCreateResponse saveArticle(ArticleCreateRequest articleCreateRequest) {
-        Article article = new Article(articleCreateRequest);
-        int articleId = articleDao.save(article); // article
-        return new ArticleCreateResponse(articleId);
+    public ArticleResponse saveArticle(ArticleRequest articleRequest) {
+        Article article = new Article(articleRequest);
+        int articleId = articleDao.save(article);
+        return new ArticleResponse(articleId);
    }
 
-    public ArticleDeleteResponse deleteById(ArticleDeleteRequest articleDeleteRequest) {
-        boolean isDeleted = articleDao.deleteById(articleDeleteRequest);
-        return new ArticleDeleteResponse(isDeleted);
+    public boolean deleteById(ArticleRequest articleRequest) {
+        return articleDao.deleteById(articleRequest.getId());
     }
 
-    public ArticleReadResponse getById(ArticleReadRequest articleReadRequest) {
-        Article article = articleDao.getById(articleReadRequest);
-        System.out.println(article);
-        return new ArticleReadResponse(0);
+    public ArticleResponse getById(ArticleRequest articleRequest) {
+        Article article = articleDao.getById(articleRequest.getId());
+        return new ArticleResponse(article);
     }
 
-    public ArticleListResponse getLatestArticlesByCategory() {
+    public ArticleResponse getLatestArticlesByCategory() {
         List<Article> articleList = articleDao.getLatestArticlesByCategory();
-        return new ArticleListResponse(articleList);
+        return new ArticleResponse(articleList);
     }
 
 

@@ -2,7 +2,8 @@ package com.takeon.burette.article.dto;
 
 import java.util.List;
 
-public class ArticleCreateRequest {
+public class ArticleRequest {
+    private int id;
     private int type;
     private String title;
     private String subTitle;
@@ -11,7 +12,14 @@ public class ArticleCreateRequest {
     private List<String> tags;
     private int category;
 
-    public ArticleCreateRequest(int type, String title, String subTitle, List<String> thumbnail, String contents, List<String> tags, int category) {
+    public ArticleRequest() {
+    }
+
+    public ArticleRequest(int id) {
+        this.id = id;
+    }
+
+    public ArticleRequest(int type, String title, String subTitle, List<String> thumbnail, String contents, List<String> tags, int category) {
         this.type = type;
         this.title = title;
         this.subTitle = subTitle;
@@ -19,6 +27,10 @@ public class ArticleCreateRequest {
         this.contents = contents;
         this.tags = tags;
         this.category = category;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public int getType() {

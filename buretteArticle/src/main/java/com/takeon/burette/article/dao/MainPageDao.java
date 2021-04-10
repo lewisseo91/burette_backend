@@ -24,8 +24,7 @@ public class MainPageDao {
             PreparedStatement preparedStatement = connection.prepareStatement(sql, new String[]{"id"});
             preparedStatement.setInt(1, mainPageRequest.getArticleId());
             return preparedStatement;
-        }, keyHolder); // INSERT, UPDATE
-        // STRING 구분자 , 같은거 넣을까 생각 중 좋진 않아
+        }, keyHolder);
         return keyHolder.getKey().intValue();
     }
 }

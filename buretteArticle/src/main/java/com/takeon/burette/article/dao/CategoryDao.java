@@ -24,8 +24,7 @@ public class CategoryDao {
             PreparedStatement preparedStatement = connection.prepareStatement(sql, new String[]{"id"});
             preparedStatement.setString(1, categoryRequest.getName());
             return preparedStatement;
-        }, keyHolder); // INSERT, UPDATE
-        // STRING 구분자 , 같은거 넣을까 생각 중 좋진 않아
+        }, keyHolder);
         return keyHolder.getKey().intValue();
     }
 }

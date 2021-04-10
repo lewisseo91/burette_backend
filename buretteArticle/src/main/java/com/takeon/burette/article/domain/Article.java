@@ -1,16 +1,17 @@
 package com.takeon.burette.article.domain;
 
-import com.takeon.burette.article.dto.ArticleCreateRequest;
+import com.takeon.burette.article.dto.ArticleRequest;
 import com.takeon.burette.article.exception.InvalidArticleException;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Article {
+    private int id;
     private int type;
     private String title;
     private String subTitle;
-    private String thumbnail; // List<String> 가능성 있음
+    private String thumbnail;
     private String contents;
     private String tags;
     private int categoryId;
@@ -21,14 +22,18 @@ public class Article {
     private static final int THUMBNAIL_LIMIT = 250;
     private static final int TAGS_LIMIT = 250;
 
-    public Article(ArticleCreateRequest articleCreateRequest) {
-        this.type = articleCreateRequest.getType();
-        this.title = articleCreateRequest.getTitle();
-        this.subTitle = articleCreateRequest.getSubTitle();
-        this.thumbnail = parseString(articleCreateRequest.getThumbnail());
-        this.contents = articleCreateRequest.getContents();
-        this.tags = parseString(articleCreateRequest.getTags());
-        this.categoryId = articleCreateRequest.getCategory();
+    public Article(int id) {
+        this.id = id;
+    }
+
+    public Article(ArticleRequest articleRequest) {
+        this.type = articleRequest.getType();
+        this.title = articleRequest.getTitle();
+        this.subTitle = articleRequest.getSubTitle();
+        this.thumbnail = parseString(articleRequest.getThumbnail());
+        this.contents = articleRequest.getContents();
+        this.tags = parseString(articleRequest.getTags());
+        this.categoryId = articleRequest.getCategory();
 
         if( !validArticle(this) ) {
             throw new InvalidArticleException();
@@ -46,7 +51,7 @@ public class Article {
         this.categoryId = categoryId;
     }
 
-    private String parseString( List<String> str ) {
+    private String parseString(List<String> str ) {
         return str.stream()
                 .map(Object::toString)
                 .collect(Collectors.joining(","));
@@ -61,6 +66,8 @@ public class Article {
         if(tags.length() > TAGS_LIMIT) return false;
         return true;
     }
+
+    public int getId() { return id; }
 
     public int getType() {
         return type;
