@@ -8,7 +8,6 @@
 - 메인 페이지 생성
 - 카테고리 생성
 
-
 ### 1. 기사
 #### 1-1. 기사 생성
 - Description 
@@ -27,6 +26,10 @@
 - Response
     - Status (기사 생성 성공 여부)
 
+
+   ![burette 시퀀스 다이어그램](https://user-images.githubusercontent.com/17772475/114263005-f29c7100-9a1d-11eb-8793-bc19a31e2e62.png)
+    
+    
 #### 1-2. 기사 상세 조회
 - Description
     - article 기사 상세 조회
