@@ -3,11 +3,13 @@
 ## 필요한 기능
 - 유저 회원가입
 - 유저 로그인
+- 유저 권한 확인
 
-# User
+### 1. User
 
-### 1. 회원가입
-
+#### 1-1. 회원가입
+- Description
+    - 유저 회원가입 확인
 - Request
     - Email
     - password
@@ -18,13 +20,21 @@
 - Response
     - Status
 
-### 2. 로그인
+#### 1-2. 로그인
 
+- Description
+  - 유저 로그인 확인
 - Request
     - Email
     - password
 - Response
     - Token 관리
+  
+#### 1-3. 유저 권한 확인
 
-
-### 4. 이미지 업로드 후 Link response
+- Description
+  - 유저 권한 확인
+- Request
+  - userId
+- Response
+  - writable 여부 확인
