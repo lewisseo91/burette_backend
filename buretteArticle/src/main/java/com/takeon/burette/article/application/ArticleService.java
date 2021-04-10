@@ -6,6 +6,7 @@ import com.takeon.burette.article.dto.*;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ArticleService {
@@ -31,10 +32,11 @@ public class ArticleService {
         return new ArticleResponse(article);
     }
 
-    public ArticleResponse getLatestArticlesByCategory() {
+    public List<ArticleResponse> getLatestArticlesByCategory() {
         List<Article> articleList = articleDao.getLatestArticlesByCategory();
-        return new ArticleResponse(articleList);
+        return articleList.stream()
+                .map(ArticleResponse::new)
+                .collect(Collectors.toList());
     }
-
 
 }

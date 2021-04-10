@@ -6,8 +6,13 @@ import java.util.List;
 
 public class ArticleResponse {
     private int id;
-    private Article article;
-    private List<Article> articleList;
+    private int type;
+    private String title;
+    private String subTitle;
+    private String thumbnail;
+    private String contents;
+    private String tags;
+    private int categoryId;
 
     public ArticleResponse() {}
 
@@ -16,22 +21,18 @@ public class ArticleResponse {
     }
 
     public ArticleResponse(Article article) {
-        this.article = article;
-    }
-
-    public ArticleResponse(List<Article> articleList) {
-        this.articleList = articleList;
+        this.id = article.getId();
+        this.type = article.getType();
+        this.title = article.getTitle();
+        this.subTitle = article.getSubTitle();
+        this.thumbnail = article.getThumbnail();
+        this.contents = article.getContents();
+        this.tags = article.getTags();
+        this.categoryId = article.getCategoryId();
     }
 
     public int getId() {
         return id;
     }
 
-    public Article getArticle() {
-        return article;
-    }
-
-    public List<Article> getArticleList() {
-        return articleList;
-    }
 }
