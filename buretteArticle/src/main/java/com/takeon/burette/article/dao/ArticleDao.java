@@ -51,48 +51,24 @@ public class ArticleDao {
 
     public Article getById(ArticleReadRequest articleReadRequest) {
         String sql = "SELECT * FROM ARTICLE WHERE id = ?";
-        return jdbcTemplate.queryForObject(sql, new RowMapper<Article>() {
-            public Article mapRow(ResultSet rs, int rowNum) throws SQLException {
-                Article article = new Article(
-                        rs.getInt("type"),
-                        rs.getString("title"),
-                        rs.getString("subTitle"),
-                        rs.getString("thumbnail"),
-                        rs.getString("contents"),
-                        rs.getString("tags"),
-                        rs.getInt("categoryId")
-                );
-                return article;
-            }
-
-        }, articleReadRequest.getId());
+        return jdbcTemplate.queryForObject(sql, selectArticles, articleReadRequest.getId());
     }
 
     public List<Article> getLatestArticlesByCategory() {
         String sql = "SELECT * FROM ARTICLE WHERE id IN ( SELECT MAX(id) FROM ARTICLE GROUP BY categoryId )";
-        List<Article> result = new ArrayList<>();
-        jdbcTemplate.update(connection -> {
-            try (PreparedStatement stmt = connection.prepareStatement(sql)){
-                try(ResultSet rs = stmt.executeQuery()) {
-                    while(rs.next()) {
-                        Article article = new Article(
-                                rs.getInt("type"),
-                                rs.getString("title"),
-                                rs.getString("subTitle"),
-                                rs.getString("thumbnail"),
-                                rs.getString("contents"),
-                                rs.getString("tags"),
-                                rs.getInt("categoryId")
-                        );
-
-                        result.add(article);
-                    }
-                }
-                return stmt;
-            }
-        });
-        return result;
-//        return jdbcTemplate.query(sql);
+        return jdbcTemplate.query(
+                sql,
+                selectArticles
+        );
     }
 
+    private final static RowMapper<Article> selectArticles = ( rs, rowNum) -> new Article(
+            rs.getInt("type"),
+            rs.getString("title"),
+            rs.getString("subTitle"),
+            rs.getString("thumbnail"),
+            rs.getString("contents"),
+            rs.getString("tags"),
+            rs.getInt("categoryId")
+    );
 }

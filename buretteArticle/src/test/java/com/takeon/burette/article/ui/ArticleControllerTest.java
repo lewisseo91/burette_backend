@@ -34,7 +34,7 @@ public class ArticleControllerTest extends AcceptanceTest {
         testThumbnail.add("abcd");
         List<String> testTags = new ArrayList<>();
         testThumbnail.add("tags");
-        ArticleCreateRequest articleCreateRequest = new ArticleCreateRequest(0, "abc", "cbd", testThumbnail, "dsalkjfdsalk", testTags, 0);
+        ArticleCreateRequest articleCreateRequest = new ArticleCreateRequest(0, "abc", "cbd", testThumbnail, "dsalkjfdsalk", testTags, 3);
         ExtractableResponse<Response> res = RestAssured
                 .given().log().all()
                 .contentType("application/json")
@@ -94,6 +94,7 @@ public class ArticleControllerTest extends AcceptanceTest {
                 .when().post("/article/latest_category")
                 .then().log().all()
                 .extract();
+        System.out.println(res.body().asString());
         assertThat(res.statusCode()).isEqualTo(HttpStatus.OK.value());
     }
 }
