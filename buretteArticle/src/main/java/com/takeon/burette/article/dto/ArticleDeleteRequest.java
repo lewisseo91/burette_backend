@@ -1,7 +1,10 @@
 package com.takeon.burette.article.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class ArticleDeleteRequest {
-    private int id;
+
+    int id;
 
     public ArticleDeleteRequest(int id) {
         this.id = id;

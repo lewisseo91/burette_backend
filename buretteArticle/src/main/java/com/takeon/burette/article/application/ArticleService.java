@@ -29,7 +29,8 @@ public class ArticleService {
 
     public ArticleReadResponse getById(ArticleReadRequest articleReadRequest) {
         Article article = articleDao.getById(articleReadRequest);
-        return new ArticleReadResponse(article);
+        System.out.println(article);
+        return new ArticleReadResponse(0);
     }
 
     public ArticleListResponse getLatestArticlesByCategory() {

@@ -31,7 +31,6 @@ public class MainPageControllerTest extends AcceptanceTest {
     @Test
     void createMainPageTest() {
         MainPageRequest mainPageRequest = new MainPageRequest(1);
-        System.out.println("이게 뭐야?>??" + mainPageRequest.getArticleId());
         ExtractableResponse<Response> res = RestAssured
                 .given().log().all()
                 .contentType("application/json")

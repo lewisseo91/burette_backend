@@ -6,12 +6,14 @@ import com.takeon.burette.article.dto.ArticleDeleteRequest;
 import com.takeon.burette.article.dto.ArticleReadRequest;
 import org.springframework.asm.TypeReference;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -49,7 +51,21 @@ public class ArticleDao {
 
     public Article getById(ArticleReadRequest articleReadRequest) {
         String sql = "SELECT * FROM ARTICLE WHERE id = ?";
-        return jdbcTemplate.queryForObject(sql, Article.class, articleReadRequest.getId());
+        return jdbcTemplate.queryForObject(sql, new RowMapper<Article>() {
+            public Article mapRow(ResultSet rs, int rowNum) throws SQLException {
+                Article article = new Article(
+                        rs.getInt("type"),
+                        rs.getString("title"),
+                        rs.getString("subTitle"),
+                        rs.getString("thumbnail"),
+                        rs.getString("contents"),
+                        rs.getString("tags"),
+                        rs.getInt("categoryId")
+                );
+                return article;
+            }
+
+        }, articleReadRequest.getId());
     }
 
     public List<Article> getLatestArticlesByCategory() {

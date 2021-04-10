@@ -29,8 +29,8 @@ public class ArticleController {
 
     @PostMapping("/delete")
     public ResponseEntity deleteArticle(@RequestBody ArticleDeleteRequest articleDeleteRequest) {
-        ArticleDeleteResponse articleDeleteResponse = articleService.deleteById(articleDeleteRequest);
-        return ResponseEntity.ok().body(articleDeleteResponse.isDeleted());
+//        ArticleDeleteResponse articleDeleteResponse = articleService.deleteById(articleDeleteRequest);
+        return ResponseEntity.ok().build();
     }
 
     @PostMapping("/get")

@@ -1,13 +1,6 @@
 DROP TABLE IF EXISTS ARTICLE;
 DROP TABLE IF EXISTS MAINPAGE;
 
---    private int type;
---    private String title;
---    private String subTitle;
---    private List<String> thumbnail; // List<String> 가능성 있음
---    private String contents;
---    private List<String> tags;
---    private int category;
 CREATE TABLE ARTICLE (
   id INT AUTO_INCREMENT  PRIMARY KEY,
   type INT,

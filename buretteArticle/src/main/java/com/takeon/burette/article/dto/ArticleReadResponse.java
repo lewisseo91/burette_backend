@@ -1,18 +1,16 @@
 package com.takeon.burette.article.dto;
 
-import com.takeon.burette.article.domain.Article;
-
 import java.util.List;
 
 // DTO
 public class ArticleReadResponse {
-    private Article article;
+    private int article;
 
-    public ArticleReadResponse(Article article) {
+    public ArticleReadResponse(int article) {
         this.article = article;
     }
 
-    public Article getArticle() {
+    public int getArticle() {
         return article;
     }
 }
