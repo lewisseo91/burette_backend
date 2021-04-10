@@ -2,6 +2,8 @@ package com.takeon.burette.article.ui;
 
 import com.takeon.burette.article.application.ArticleService;
 import com.takeon.burette.article.dto.*;
+import com.takeon.burette.supports.api.UserClient;
+import org.apache.catalina.User;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,9 +13,11 @@ import org.springframework.web.bind.annotation.*;
 public class ArticleController {
 
     private ArticleService articleService;
+    private UserClient userClient;
 
     public ArticleController(ArticleService articleService) {
         this.articleService = articleService;
+        this.userClient = new UserClient();
     }
 
     @GetMapping("/test")
@@ -22,14 +26,22 @@ public class ArticleController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity createArticle(@RequestBody ArticleCreateRequest articleCreateRequest) {
+    public ResponseEntity createArticle(@RequestBody ArticleCreateRequest articleCreateRequest, @RequestHeader (name="Authorization") String token) {
+        boolean isWritable = userClient.isWritable(token);
+        if(!isWritable) {
+            return ResponseEntity.status(401).build();
+        }
         ArticleCreateResponse articleCreateResponse = articleService.saveArticle(articleCreateRequest);
         return ResponseEntity.ok().body(articleCreateResponse.getId());
     }
 
     @PostMapping("/delete")
-    public ResponseEntity deleteArticle(@RequestBody ArticleDeleteRequest articleDeleteRequest) {
-//        ArticleDeleteResponse articleDeleteResponse = articleService.deleteById(articleDeleteRequest);
+    public ResponseEntity deleteArticle(@RequestBody ArticleDeleteRequest articleDeleteRequest, @RequestHeader (name="Authorization") String token) {
+        boolean isWritable = userClient.isWritable(token);
+        if(!isWritable) {
+            return ResponseEntity.status(401).build();
+        }
+        ArticleDeleteResponse articleDeleteResponse = articleService.deleteById(articleDeleteRequest);
         return ResponseEntity.ok().build();
     }
 

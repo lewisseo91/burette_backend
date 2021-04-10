@@ -3,6 +3,7 @@ package com.takeon.burette.article.ui;
 import com.takeon.burette.article.dto.ArticleCreateRequest;
 import com.takeon.burette.article.dto.ArticleDeleteRequest;
 import com.takeon.burette.article.dto.ArticleReadRequest;
+import com.takeon.burette.supports.api.UserClient;
 import io.restassured.RestAssured;
 import io.restassured.response.ExtractableResponse;
 import io.restassured.response.Response;
@@ -26,6 +27,13 @@ public class ArticleControllerTest extends AcceptanceTest {
                 .then().log().all()
                 .extract();
         assertThat(res.statusCode()).isEqualTo(HttpStatus.OK.value());
+    }
+
+    @Test
+    void isWritableTest() {
+        UserClient uc = new UserClient();
+        boolean isWritable = uc.isWritable("fdlkasjlfkdsajklfdsa");
+        assertThat(isWritable).isFalse();
     }
 
     @Test
