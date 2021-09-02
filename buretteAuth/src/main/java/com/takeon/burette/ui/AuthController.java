@@ -19,6 +19,7 @@ public class AuthController {
     @GetMapping("/create/{id}")
     public ResponseEntity generateToken(@PathVariable String id) {
         String token = authService.createToken(id);
+        System.out.println("token : " + token);
         return ResponseEntity.status(201).body(token);
     }
 

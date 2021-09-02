@@ -12,7 +12,7 @@ import org.springframework.test.context.ActiveProfiles;
 @ActiveProfiles("test")
 public class AcceptanceTest {
     @LocalServerPort
-    int port;
+    protected int port;
 
     @BeforeEach
     public void setUp() {

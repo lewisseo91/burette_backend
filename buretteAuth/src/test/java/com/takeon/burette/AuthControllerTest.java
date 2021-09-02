@@ -7,9 +7,11 @@ import io.restassured.response.Response;
 import org.codehaus.groovy.transform.SourceURIASTTransformation;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.web.server.LocalServerPort;
+
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-@SpringBootTest
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class AuthControllerTest extends AcceptanceTest {
 
     @Test
@@ -20,9 +22,11 @@ public class AuthControllerTest extends AcceptanceTest {
                 .when().get("/auth/create/" +payload)
                 .then().log().all()
                 .extract();
+
         JwtTokenProvider jwtTokenProvider = new JwtTokenProvider();
         String token = jwtTokenProvider.createToken(payload);
-       assertThat(res.body().toString()).isEqualTo(token);
+
+        assertThat(res.body().asString()).isEqualTo(token);
     }
 
     @Test
@@ -36,7 +40,8 @@ public class AuthControllerTest extends AcceptanceTest {
                 .when().get("/auth/valid/" +token)
                 .then().log().all()
                 .extract();
-        assertThat(res.body().toString()).isEqualTo(token);
+
+        assertThat(res.body().asString()).isEqualTo(payload);
     }
 
 }
