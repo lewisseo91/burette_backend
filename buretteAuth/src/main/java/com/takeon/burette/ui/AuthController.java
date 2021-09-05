@@ -16,6 +16,11 @@ public class AuthController {
         this.authService = authService;
     }
 
+    @GetMapping("/_hcheck.hdn")
+    public ResponseEntity healthCheck() {
+        return ResponseEntity.ok().build();
+    }
+
     @GetMapping("/create/{id}")
     public ResponseEntity generateToken(@PathVariable String id) {
         String token = authService.createToken(id);
