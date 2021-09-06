@@ -20,7 +20,7 @@ public class AuthController {
     public ResponseEntity healthCheck() {
         return ResponseEntity.ok().build();
     }
-
+    
     @GetMapping("/create/{id}")
     public ResponseEntity generateToken(@PathVariable String id) {
         String token = authService.createToken(id);
@@ -31,9 +31,11 @@ public class AuthController {
     @GetMapping("/valid/{token}")
     public ResponseEntity getIdFromToken(@PathVariable String token) {
         boolean isValid = authService.validToken(token);
+        System.out.println(isValid);
         if (isValid) {
             return ResponseEntity.ok().body(authService.getPayload(token));
         }
+        System.out.println("확인");
         return ResponseEntity.status(401).build();
     }
 

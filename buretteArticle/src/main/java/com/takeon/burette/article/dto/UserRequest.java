@@ -1,8 +1,7 @@
-package com.takeon.burette.user.dto;
+package com.takeon.burette.article.dto;
 
-import lombok.Getter;
+import java.util.List;
 
-@Getter
 public class UserRequest {
     private String userId;
     private String password;
@@ -24,4 +23,36 @@ public class UserRequest {
         this.writePermission = writePermission;
     }
 
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public String getBirthDay() {
+        return birthDay;
+    }
+
+    public int getGender() {
+        return gender;
+    }
+
+    public int getWritePermission() {
+        return writePermission;
+    }
 }

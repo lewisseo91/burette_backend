@@ -1,4 +1,5 @@
 DROP TABLE IF EXISTS USER;
+
 CREATE TABLE USER (
       id INT AUTO_INCREMENT PRIMARY KEY,
       userId VARCHAR(250) NOT NULL,
@@ -9,4 +10,4 @@ CREATE TABLE USER (
       birthDay DATE,
       gender INT DEFAULT 0,
       writePermission INT DEFAULT 0
-);
+)

@@ -3,7 +3,10 @@ package com.takeon.burette.user.dao;
 import com.takeon.burette.user.dto.LoginRequest;
 import com.takeon.burette.user.dto.TokenRequest;
 import com.takeon.burette.user.dto.UserRequest;
+import com.takeon.burette.user.dto.UserResponse;
+import org.apache.catalina.User;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
@@ -62,4 +65,24 @@ public class UserDao {
         return date;
     }
 
+    public UserResponse getUserById(String userId) {
+        String sql = "SELECT * FROM USER Where userId = ?";
+//        jdbcTemplate.(connection -> {
+//            PreparedStatement preparedStatement = connection.prepareStatement(sql, new String[]{"id"});
+//        });
+
+        return jdbcTemplate.queryForObject(sql, (rs, rowNum) -> {
+            UserResponse response = new UserResponse(
+                    rs.getString("userId"),
+                    rs.getString("password"),
+                    rs.getString("nickname"),
+                    rs.getString("email"),
+                    rs.getString("phoneNumber"),
+                    rs.getString("birthDay"),
+                    rs.getInt("gender"),
+                    rs.getInt("writePermission")
+            );
+            return response;
+        }, userId);
+    }
 }

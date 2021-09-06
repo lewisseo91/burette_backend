@@ -1,10 +1,9 @@
 package com.takeon.burette.user.ui;
 
-import com.takeon.burette.user.dto.LoginRequest;
-import com.takeon.burette.user.dto.LoginResponse;
-import com.takeon.burette.user.dto.TokenRequest;
-import com.takeon.burette.user.dto.UserRequest;
-import com.takeon.burette.user.application.UserService;
+import com.takeon.burette.user.domain.User;
+import com.takeon.burette.user.dto.*;
+import com.takeon.burette.user.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,14 +12,17 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/user")
 public class UserController {
 
+//    private UserServiceOld userServiceOld;
+
+    @Autowired
     private UserService userService;
 
-    public UserController(UserService userService) {
-        this.userService = userService;
-    }
+//    public UserController(UserServiceOld userServiceOld) {
+//        this.userServiceOld = userServiceOld;
+//    }
 
     @GetMapping("/test")
-    public ResponseEntity Test () {
+    public ResponseEntity Test() {
         String body = "Hello, world!";
         return ResponseEntity.ok().body(body);
     }
@@ -28,15 +30,17 @@ public class UserController {
     @PostMapping("/create")
     public ResponseEntity createUser(@RequestBody UserRequest userRequest) {
         // 등록
-        int id = userService.registerUser(userRequest);
-        System.out.println(id);
-        return ResponseEntity.ok().build();
+//        int id = userServiceOld.registerUser(userRequest);
+//        System.out.println(id);
+        User user = userService.save(userRequest);
+        return ResponseEntity.ok().body(user);
     }
 
     @PostMapping("/login")
     public ResponseEntity loginUser(@RequestBody LoginRequest loginRequest) {
+//        String token = userServiceOld.loginUser(loginRequest);
         String token = userService.loginUser(loginRequest);
-        if( token == null ) {
+        if (token == null) {
             return ResponseEntity.badRequest().build();
         }
         LoginResponse loginResponse = new LoginResponse(token);
@@ -45,8 +49,20 @@ public class UserController {
 
     @PostMapping("/writable")
     public ResponseEntity isWritable(@RequestBody TokenRequest tokenRequest) {
+//        boolean isWritable = userServiceOld.isWritable(tokenRequest);
         boolean isWritable = userService.isWritable(tokenRequest);
+        System.out.println("isWritable : " + isWritable);
         return isWritable ? ResponseEntity.ok().build() : ResponseEntity.status(401).build();
+    }
+
+    @GetMapping("/user/{id}")
+    public ResponseEntity<UserResponse> getUserById(@PathVariable String userId) {
+//        UserResponse response = userServiceOld.getUserById(userId);
+        UserResponse response = userService.getUserByUserId(userId);
+        if (response == null) {
+            return ResponseEntity.badRequest().build();
+        }
+        return ResponseEntity.ok().body(response);
     }
 
 }

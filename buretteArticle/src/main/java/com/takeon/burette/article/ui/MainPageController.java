@@ -1,19 +1,18 @@
 package com.takeon.burette.article.ui;
 
-import com.takeon.burette.article.application.MainPageService;
 import com.takeon.burette.article.dto.MainPageRequest;
 import com.takeon.burette.article.dto.MainPageResponse;
+import com.takeon.burette.article.service.MainPageService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/main")
 public class MainPageController {
-    private MainPageService mainPageService;
 
-    public MainPageController(MainPageService mainPageService) {
-        this.mainPageService = mainPageService;
-    }
+    @Autowired
+    private MainPageService mainPageService;
 
     @GetMapping("/test")
     public ResponseEntity Test () {
@@ -22,7 +21,6 @@ public class MainPageController {
 
     @PostMapping("/create")
     public ResponseEntity createMainPage(@RequestBody MainPageRequest mainPageRequest) {
-        System.out.println("12312321321ldksjalgkjdsalkgdjsalkgjdsalkgjalsdjas");
         MainPageResponse mainPageResponse = mainPageService.saveMainPage(mainPageRequest);
         return ResponseEntity.ok().body(mainPageResponse.getId());
     }

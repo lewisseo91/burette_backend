@@ -1,6 +1,9 @@
 package com.takeon.burette.article.ui;
 
 import com.takeon.burette.article.dto.ArticleRequest;
+import com.takeon.burette.article.dto.ArticleResponse;
+import com.takeon.burette.article.dto.UserRequest;
+import com.takeon.burette.article.dto.UserResponse;
 import com.takeon.burette.supports.api.UserClient;
 import io.restassured.RestAssured;
 import io.restassured.response.ExtractableResponse;
@@ -29,13 +32,18 @@ public class ArticleControllerTest extends AcceptanceTest {
 
     @Test
     void isWritableTest() {
-        UserClient uc = new UserClient();
-        boolean isWritable = uc.isWritable("fdlkasjlfkdsajklfdsa");
-        assertThat(isWritable).isFalse();
+//        UserClient uc = new UserClient();
+//        boolean isWritable = uc.isWritable("fdlkasjlfkdsajklfdsa");
+//        assertThat(isWritable).isFalse();
     }
 
     @Test
     void createArticleTest() {
+        UserClient uc = new UserClient();
+        UserRequest userRequest = new UserRequest("abc123123","adslkfjas", "dafslkjfdas", "dfklasjfdas", "010-1111-1111", "000", 0, 1);
+        UserResponse responseUser = uc.createUser(userRequest);
+        String token = uc.getTokenByUserId(responseUser.getUserId());
+
         List<String> testThumbnail = new ArrayList<>();
         testThumbnail.add("abcd");
         List<String> testTags = new ArrayList<>();
@@ -44,6 +52,7 @@ public class ArticleControllerTest extends AcceptanceTest {
         ExtractableResponse<Response> res = RestAssured
                 .given().log().all()
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .header("authorization", token)
                 .body(articleRequest)
                 .when().post("/article/create")
                 .then().log().all()
@@ -53,6 +62,11 @@ public class ArticleControllerTest extends AcceptanceTest {
 
     @Test
     void deleteArticleTest() {
+        UserClient uc = new UserClient();
+        UserRequest userRequest = new UserRequest("abc123123","adslkfjas", "dafslkjfdas", "dfklasjfdas", "010-1111-1111", "000", 0, 1);
+        UserResponse responseUser = uc.createUser(userRequest);
+        String token = uc.getTokenByUserId(responseUser.getUserId());
+
         List<String> testThumbnail = new ArrayList<>();
         testThumbnail.add("abcd");
         List<String> testTags = new ArrayList<>();
@@ -61,18 +75,22 @@ public class ArticleControllerTest extends AcceptanceTest {
         ExtractableResponse<Response> res = RestAssured
                 .given().log().all()
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .header("authorization", token)
                 .body(articleRequest)
                 .when().post("/article/create")
                 .then().log().all()
                 .extract();
         assertThat(res.statusCode()).isEqualTo(HttpStatus.OK.value());
+//        System.out.println(res.body().asString());
+        ArticleResponse userResponse = res.body().as(ArticleResponse.class);
+        Long id = userResponse.getId();
 
-        ArticleRequest articleRequest2 = new ArticleRequest(Integer.parseInt(res.body().asString()));
         ExtractableResponse<Response> res2 = RestAssured
                 .given().log().all()
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
-                .body(articleRequest2)
-                .when().post("/article/delete")
+                .header("authorization", token)
+                .body(articleRequest)
+                .when().delete("/article/delete/" + id)
                 .then().log().all()
                 .extract();
         assertThat(res2.statusCode()).isEqualTo(HttpStatus.OK.value());
@@ -80,12 +98,12 @@ public class ArticleControllerTest extends AcceptanceTest {
 
     @Test
     void getArticleTest() {
-        ArticleRequest articleRequest = new ArticleRequest(1);
+        createArticleTest();
+
         ExtractableResponse<Response> res = RestAssured
                 .given().log().all()
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
-                .body(articleRequest)
-                .when().post("/article/get")
+                .when().get("/article/get/1")
                 .then().log().all()
                 .extract();
         assertThat(res.statusCode()).isEqualTo(HttpStatus.OK.value());
@@ -93,10 +111,12 @@ public class ArticleControllerTest extends AcceptanceTest {
 
     @Test
     void getLatestCategoryTest() {
+        createArticleTest();
+
         ExtractableResponse<Response> res = RestAssured
                 .given().log().all()
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
-                .when().post("/article/latest_category")
+                .when().get("/article/latest_category")
                 .then().log().all()
                 .extract();
         assertThat(res.statusCode()).isEqualTo(HttpStatus.OK.value());

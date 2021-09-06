@@ -41,8 +41,8 @@ public class JwtTokenProvider {
         } catch (JwtException|IllegalArgumentException e) {
 //            e.printStackTrace();
             System.out.println("invalid token");
+            return false;
         }
-        return false;
     }
 
     @Override

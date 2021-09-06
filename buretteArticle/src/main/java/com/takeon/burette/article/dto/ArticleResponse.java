@@ -1,11 +1,15 @@
 package com.takeon.burette.article.dto;
 
 import com.takeon.burette.article.domain.Article;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+@NoArgsConstructor
+@Getter
 public class ArticleResponse {
-    private int id;
+    private Long id;
     private int type;
     private String title;
     private String subTitle;
@@ -13,12 +17,6 @@ public class ArticleResponse {
     private String contents;
     private String tags;
     private int categoryId;
-
-    public ArticleResponse() {}
-
-    public ArticleResponse(int id) {
-        this.id = id;
-    }
 
     public ArticleResponse(Article article) {
         this.id = article.getId();
@@ -29,10 +27,6 @@ public class ArticleResponse {
         this.contents = article.getContents();
         this.tags = article.getTags();
         this.categoryId = article.getCategoryId();
-    }
-
-    public int getId() {
-        return id;
     }
 
 }

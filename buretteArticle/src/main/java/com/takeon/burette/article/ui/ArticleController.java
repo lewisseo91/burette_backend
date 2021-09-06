@@ -1,9 +1,9 @@
 package com.takeon.burette.article.ui;
 
-import com.takeon.burette.article.application.ArticleService;
-import com.takeon.burette.article.domain.Article;
 import com.takeon.burette.article.dto.*;
+import com.takeon.burette.article.service.ArticleService;
 import com.takeon.burette.supports.api.UserClient;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,13 +14,10 @@ import java.util.List;
 @RequestMapping("/article")
 public class ArticleController {
 
+    @Autowired
     private ArticleService articleService;
-    private UserClient userClient;
 
-    public ArticleController(ArticleService articleService) {
-        this.articleService = articleService;
-        this.userClient = new UserClient();
-    }
+    private UserClient userClient = new UserClient();
 
     @GetMapping("/test")
     public ResponseEntity Test () {
@@ -28,32 +25,36 @@ public class ArticleController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<Integer> createArticle(@RequestBody ArticleRequest articleRequest, @RequestHeader (name="Authorization") String token) {
+    public ResponseEntity<ArticleResponse> createArticle(@RequestBody ArticleRequest articleRequest, @RequestHeader (name="Authorization") String token) {
         if(!userClient.isWritable(token)) {
             return ResponseEntity.status(401).build();
         }
+
         ArticleResponse articleResponse = articleService.saveArticle(articleRequest);
-        return ResponseEntity.ok().body(articleResponse.getId());
-    }
-
-    @PostMapping("/delete")
-    public ResponseEntity deleteArticle(@RequestBody ArticleRequest articleRequest, @RequestHeader (name="Authorization") String token) {
-        if(!userClient.isWritable(token)) {
-            return ResponseEntity.status(401).build();
-        }
-        boolean isDeleted = articleService.deleteById(articleRequest);
-        return isDeleted ? ResponseEntity.ok().build() : ResponseEntity.badRequest().build();
-    }
-
-    @PostMapping("/get")
-    public ResponseEntity<ArticleResponse> getArticle(@RequestBody ArticleRequest articleRequest) {
-        ArticleResponse articleResponse = articleService.getById(articleRequest);
         return ResponseEntity.ok().body(articleResponse);
     }
 
-    @PostMapping("/latest_category")
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity deleteArticle(@PathVariable Long id, @RequestHeader (name="Authorization") String token) {
+        if(!userClient.isWritable(token)) {
+            return ResponseEntity.status(401).build();
+        }
+
+        boolean isDeleted = articleService.deleteById(id);
+        return isDeleted ? ResponseEntity.ok().build() : ResponseEntity.badRequest().build();
+    }
+
+    @GetMapping("/get/{id}")
+    public ResponseEntity<ArticleResponse> getArticle(@PathVariable Long id) {
+        ArticleResponse articleResponse = articleService.getArticleById(id);
+
+        return ResponseEntity.ok().body(articleResponse);
+    }
+
+    @GetMapping("/latest_category")
     public ResponseEntity<List<ArticleResponse>> getLatestCategory() {
         List<ArticleResponse> articleResponses = articleService.getLatestArticlesByCategory();
+
         return ResponseEntity.ok().body(articleResponses);
     }
 

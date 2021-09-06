@@ -1,9 +1,16 @@
 package com.takeon.burette.article.dto;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
+
 import java.util.List;
 
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
 public class ArticleRequest {
-    private int id;
     private int type;
     private String title;
     private String subTitle;
@@ -11,53 +18,4 @@ public class ArticleRequest {
     private String contents;
     private List<String> tags;
     private int category;
-
-    public ArticleRequest() {
-    }
-
-    public ArticleRequest(int id) {
-        this.id = id;
-    }
-
-    public ArticleRequest(int type, String title, String subTitle, List<String> thumbnail, String contents, List<String> tags, int category) {
-        this.type = type;
-        this.title = title;
-        this.subTitle = subTitle;
-        this.thumbnail = thumbnail;
-        this.contents = contents;
-        this.tags = tags;
-        this.category = category;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public int getType() {
-        return type;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public String getSubTitle() {
-        return subTitle;
-    }
-
-    public List<String> getThumbnail() {
-        return thumbnail;
-    }
-
-    public String getContents() {
-        return contents;
-    }
-
-    public List<String> getTags() {
-        return tags;
-    }
-
-    public int getCategory() {
-        return category;
-    }
 }

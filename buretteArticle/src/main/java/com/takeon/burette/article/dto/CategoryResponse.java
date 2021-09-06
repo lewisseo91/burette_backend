@@ -1,13 +1,19 @@
 package com.takeon.burette.article.dto;
 
+import com.takeon.burette.article.domain.Category;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
 public class CategoryResponse {
-    private int id;
+    private Long id;
+    private String name;
 
-    public CategoryResponse(int id) {
-        this.id = id;
-    }
-
-    public int getId() {
-        return id;
+    public CategoryResponse(Category category) {
+        this.id = category.getId();
+        this.name = category.getName();
     }
 }

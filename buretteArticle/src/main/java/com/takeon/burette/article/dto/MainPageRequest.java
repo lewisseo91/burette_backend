@@ -1,17 +1,13 @@
 package com.takeon.burette.article.dto;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
 public class MainPageRequest {
-    private int articleId;
-
-    public MainPageRequest() {
-    }
-
-    public MainPageRequest(int articleId) {
-        this.articleId = articleId;
-    }
-
-    public int getArticleId() {
-        return articleId;
-    }
+    private Long articleId;
 
 }

@@ -1,16 +1,13 @@
 package com.takeon.burette.article.dto;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
 public class CategoryRequest {
     private String name;
 
-    public CategoryRequest() {
-    }
-
-    public CategoryRequest(String name) {
-        this.name = name;
-    }
-
-    public String getName() {
-        return name;
-    }
 }
