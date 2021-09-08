@@ -22,6 +22,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/buretteArticle" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -39,7 +40,21 @@
       <option name="project" value="LOCAL" />
       <updated>1630819792392</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="fix : h2 database -&gt; mysql 로 변경, jdbc -&gt; hibernate + jpa (spring data jpa)로 변경">
+      <created>1630934051330</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1630934051330</updated>
+    </task>
+    <task id="LOCAL-00003" summary="fix : 필요없는 파일 삭제">
+      <created>1630934138101</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1630934138101</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -52,9 +67,12 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="fix : organize" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix : organize" />
+    <MESSAGE value="fix : h2 database -&gt; mysql 로 변경, jdbc -&gt; hibernate + jpa (spring data jpa)로 변경" />
+    <MESSAGE value="fix : 필요없는 파일 삭제" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix : 필요없는 파일 삭제" />
   </component>
 </project>

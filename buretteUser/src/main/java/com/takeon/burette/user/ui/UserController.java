@@ -30,6 +30,8 @@ public class UserController {
     @PostMapping("/create")
     public ResponseEntity createUser(@RequestBody UserRequest userRequest) {
         // 등록
+        System.out.println("ldkfsajfdlksajdf");
+        System.out.println(userRequest.toString());
 //        int id = userServiceOld.registerUser(userRequest);
 //        System.out.println(id);
         User user = userService.save(userRequest);

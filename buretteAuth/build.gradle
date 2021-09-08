@@ -32,6 +32,9 @@ dependencies {
 	testImplementation 'io.rest-assured:xml-path:4.2.0'
 	testImplementation 'io.rest-assured:rest-assured-common:4.2.0'
 
+	// h2
+	runtimeOnly 'com.h2database:h2'
+
 	// mysql
 	runtimeOnly 'mysql:mysql-connector-java'
 }
