@@ -11,20 +11,26 @@
 
 
 ### 사용 언어 및 프레임워크
-- Spring boot
+- Spring boot 2.4
+- gradle 6.x
+- mysql 8.x
+- junit 5
 - apache
 - jdk 11
-- *(계획 중) JPA with Hibernate
+- JPA with Hibernate
 - *(계획 중) Article API for mongoDB
 
 ### 챙겨야 할 일
-- [x] 유저 쪽 토큰 베이스 로그인
-- [x] h2 데이터 베이스 사용법
+- [o] 유저 쪽 토큰 베이스 로그인
+- [o] h2 데이터 베이스 사용법
+- [o] dev, real profile 나누어 적용
+- [ ] dockerhub + jenkins 도입
 
 ### 설계 중점
 - 객체 지향 중심적 설계 및 확장성 고려 디자인 채용
 - API 서버의 역할을 충실히
 - 분산 시스템 적용 예정 (Article & User 나눔) -> MSA 시스템
+- 시스템 간 연결 Restful API
 - *(계획 중) 캐쉬 서버 적용할 예정 (Redis Server) 
 - *(계획 중) 이미지 업로드 서버 고민 중 (분산 시스템 적용 시 글로벌 이미지 서버 필요할 것이라 예상)
 
