@@ -58,4 +58,11 @@ public class ArticleController {
         return ResponseEntity.ok().body(articleResponses);
     }
 
+    @GetMapping("/articles")
+    public ResponseEntity<List<ArticleResponse>> getArticles() {
+        List<ArticleResponse> articleResponses = articleService.getArticles();
+
+        return ResponseEntity.ok().body(articleResponses);
+    }
+
 }

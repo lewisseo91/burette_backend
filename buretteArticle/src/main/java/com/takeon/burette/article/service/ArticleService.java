@@ -49,4 +49,11 @@ public class ArticleService {
                 .map(ArticleResponse::new)
                 .collect(Collectors.toList());
     }
+
+    public List<ArticleResponse> getArticles() {
+        List<Article> articleList = articleRepository.findAll();
+        return articleList.stream()
+                .map(ArticleResponse::new)
+                .collect(Collectors.toList());
+    }
 }
