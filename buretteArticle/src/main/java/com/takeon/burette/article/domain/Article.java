@@ -50,6 +50,10 @@ public class Article {
     }
 
     private String parseString(List<String> str) {
+        if (str == null || str.size() == 0) {
+            return null;
+        }
+
         return str.stream()
                 .map(Object::toString)
                 .collect(Collectors.joining(","));
@@ -57,11 +61,11 @@ public class Article {
 
     private boolean validArticle(Article article) {
         // REFACTOR : 썸네일 && 콘텐츠 && 태그 객체로 만들어서 좀 더 객체 지향적으로 바꿀 수 있게 하기
-        if (title.length() > TITLE_LIMIT) return false;
-        if (subTitle.length() > SUBTITLE_LIMIT) return false;
-        if (thumbnail.length() > THUMBNAIL_LIMIT) return false;
-        if (contents.length() > CONTENTS_LIMIT) return false;
-        if (tags.length() > TAGS_LIMIT) return false;
+        if (title != null && title.length() > TITLE_LIMIT) return false;
+        if (subTitle != null && subTitle.length() > SUBTITLE_LIMIT) return false;
+        if (thumbnail != null && thumbnail.length() > THUMBNAIL_LIMIT) return false;
+        if (contents != null && contents.length() > CONTENTS_LIMIT) return false;
+        if (tags != null && tags.length() > TAGS_LIMIT) return false;
         return true;
     }
 }
