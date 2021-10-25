@@ -121,4 +121,18 @@ public class ArticleControllerTest extends AcceptanceTest {
                 .extract();
         assertThat(res.statusCode()).isEqualTo(HttpStatus.OK.value());
     }
+
+    @Test
+    void getArticlesTest() {
+        createArticleTest();
+
+        ExtractableResponse<Response> res = RestAssured
+                .given().log().all()
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .when().get("/article/articles")
+                .then().log().all()
+                .extract();
+
+        assertThat(res.statusCode()).isEqualTo(HttpStatus.OK.value());
+    }
 }

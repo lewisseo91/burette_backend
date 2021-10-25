@@ -8,7 +8,6 @@ import lombok.*;
 @Getter
 public class UserResponse {
     private String userId;
-    private String password;
     private String nickname;
     private String email;
     private String phoneNumber;
@@ -18,7 +17,6 @@ public class UserResponse {
 
     public UserResponse(User user) {
         this.userId = user.getUserId();
-        this.password = user.getPassword();
         this.nickname = user.getNickname();
         this.email = user.getEmail();
         this.phoneNumber = user.getPhoneNumber();

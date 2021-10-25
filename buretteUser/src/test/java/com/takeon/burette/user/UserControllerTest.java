@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.takeon.burette.user.dto.LoginRequest;
 import com.takeon.burette.user.dto.UserRequest;
+import com.takeon.burette.user.dto.UserResponse;
 import io.restassured.RestAssured;
 import io.restassured.response.ExtractableResponse;
 import io.restassured.response.Response;
@@ -13,6 +14,9 @@ import org.junit.jupiter.api.Test;
 import org.objectweb.asm.TypeReference;
 import org.springframework.boot.test.json.JsonContent;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -67,5 +71,26 @@ public class UserControllerTest extends AcceptanceTest {
                 .then().log().all()
                 .extract();
         assertThat(res2.statusCode()).isEqualTo(HttpStatus.OK.value());
+    }
+
+    @Test
+    void getUsersTest() {
+        createUserTest();
+
+        ExtractableResponse<Response> res = RestAssured
+                .given().log().all()
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .when().get("/user/users")
+                .then().log().all()
+                .extract();
+
+//        System.out.println(res.body().asString());
+        List<UserResponse> responses = res.body().jsonPath().getList(".", UserResponse.class);
+
+//        for (UserResponse userResponse: responses) {
+//            System.out.println(userResponse.getUserId());
+//        }
+
+        assertThat(res.statusCode()).isEqualTo(HttpStatus.OK.value());
     }
 }

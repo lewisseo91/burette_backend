@@ -2,8 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3a3727f1-adad-4847-9259-336e7830a18c" name="Default Changelist" comment="fix : organize">
-      <change afterPath="$PROJECT_DIR$/buretteAuth/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/buretteAuth/src/main/java/com/takeon/burette/ui/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/buretteAuth/src/main/java/com/takeon/burette/ui/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/buretteArticle/src/main/java/com/takeon/burette/article/domain/Article.java" beforeDir="false" afterPath="$PROJECT_DIR$/buretteArticle/src/main/java/com/takeon/burette/article/domain/Article.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/buretteArticle/src/main/resources/schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/buretteArticle/src/main/resources/schema.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/buretteAuth/src/main/java/com/takeon/burette/BuretteAuthApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/buretteAuth/src/main/java/com/takeon/burette/BuretteAuthApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/buretteUser/src/main/java/com/takeon/burette/user/dto/UserResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/buretteUser/src/main/java/com/takeon/burette/user/dto/UserResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/buretteUser/src/main/resources/schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/buretteUser/src/main/resources/schema.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -11,6 +15,11 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="dev" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1xhuUnjMezRaz46D15bctrVLKDM" />
@@ -22,7 +31,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/buretteArticle" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -54,7 +63,14 @@
       <option name="project" value="LOCAL" />
       <updated>1630934138101</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="feat : dev, prod 나눔. user j2, jpa에 대문자로만 받아서 변경 (Todo) &#10;&#10; - dev h2&#10; - prod mysql &#10; &#10;  가능하게 변경&#10;  &#10;  prod는 공개하지 않음">
+      <created>1631100040486</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1631100040486</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -70,9 +86,10 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fix : organize" />
     <MESSAGE value="fix : h2 database -&gt; mysql 로 변경, jdbc -&gt; hibernate + jpa (spring data jpa)로 변경" />
     <MESSAGE value="fix : 필요없는 파일 삭제" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix : 필요없는 파일 삭제" />
+    <MESSAGE value="feat : dev, prod 나눔. user j2, jpa에 대문자로만 받아서 변경 (Todo) &#10;&#10; - dev h2&#10; - prod mysql &#10; &#10;  가능하게 변경&#10;  &#10;  prod는 공개하지 않음" />
+    <MESSAGE value="fix : organize" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix : organize" />
   </component>
 </project>
