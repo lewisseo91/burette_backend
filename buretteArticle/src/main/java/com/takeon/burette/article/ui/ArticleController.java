@@ -51,7 +51,7 @@ public class ArticleController {
         return ResponseEntity.ok().body(articleResponse);
     }
 
-    @GetMapping("/latest_category")
+    @GetMapping("/latest_articles_by_category")
     public ResponseEntity<List<ArticleResponse>> getLatestCategory() {
         List<ArticleResponse> articleResponses = articleService.getLatestArticlesByCategory();
 
