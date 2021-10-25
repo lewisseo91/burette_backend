@@ -17,5 +17,5 @@ public class ArticleRequest {
     private List<String> thumbnail; // List<String> 가능성 있음
     private String contents;
     private List<String> tags;
-    private int category;
+    private int categoryId;
 }

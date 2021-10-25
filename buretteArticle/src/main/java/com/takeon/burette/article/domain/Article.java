@@ -41,7 +41,7 @@ public class Article {
         this.thumbnail = parseString(articleRequest.getThumbnail());
         this.contents = articleRequest.getContents();
         this.tags = parseString(articleRequest.getTags());
-        this.categoryId = articleRequest.getCategory();
+        this.categoryId = articleRequest.getCategoryId();
 
         if (!validArticle(this)) {
             throw new InvalidArticleException();
