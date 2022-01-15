@@ -1,7 +1,7 @@
 package com.takeon.burette.dto;
 
 public class TokenRequest {
-    private String id;
+    private final String id;
 
     public TokenRequest(String id) {
         this.id = id;

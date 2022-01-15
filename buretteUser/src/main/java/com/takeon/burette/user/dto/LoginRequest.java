@@ -2,8 +2,8 @@ package com.takeon.burette.user.dto;
 
 public class LoginRequest {
 
-    private String userId;
-    private String password;
+    private final String userId;
+    private final String password;
 
     public LoginRequest(String userId, String password) {
         this.userId = userId;

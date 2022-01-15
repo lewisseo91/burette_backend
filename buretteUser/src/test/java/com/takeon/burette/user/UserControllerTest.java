@@ -1,18 +1,13 @@
 package com.takeon.burette.user;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.json.JsonMapper;
+import com.takeon.burette.AcceptanceTest;
 import com.takeon.burette.user.dto.LoginRequest;
 import com.takeon.burette.user.dto.UserRequest;
 import com.takeon.burette.user.dto.UserResponse;
 import io.restassured.RestAssured;
 import io.restassured.response.ExtractableResponse;
 import io.restassured.response.Response;
-import com.takeon.burette.AcceptanceTest;
-import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
-import org.objectweb.asm.TypeReference;
-import org.springframework.boot.test.json.JsonContent;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 
@@ -35,7 +30,7 @@ public class UserControllerTest extends AcceptanceTest {
 
     @Test
     void createUserTest() {
-        UserRequest userRequest = new UserRequest("abcd123", "123456", "abc" , "abc", "000", "000", 0, 0);
+        UserRequest userRequest = new UserRequest("abcd123", "123456", "abc", "abc", "000", "000", 0, 0);
 
         ExtractableResponse<Response> res = RestAssured
                 .given().log().all()
@@ -50,7 +45,7 @@ public class UserControllerTest extends AcceptanceTest {
 
     @Test
     void loginUserTest() {
-        UserRequest userRequest = new UserRequest("abcd123", "123456", "abc" , "abc", "000", "000", 0, 0);
+        UserRequest userRequest = new UserRequest("abcd123", "123456", "abc", "abc", "000", "000", 0, 0);
         ExtractableResponse<Response> res = RestAssured
                 .given().log().all()
                 .contentType("application/json")

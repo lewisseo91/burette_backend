@@ -17,7 +17,7 @@ public class UserClient {
     private static final String PORT_AUTH = ":8092";
     private static final String GET_TOKEN_MAPPING = "/auth/create/";
 
-    private RestTemplate restTemplate;
+    private final RestTemplate restTemplate;
 
     public UserClient() {
         this.restTemplate = new RestTemplate();
@@ -34,10 +34,7 @@ public class UserClient {
     public boolean isWritable(String token) {
         TokenRequest tokenRequest = new TokenRequest(token);
         ResponseEntity<TokenRequest> response = restTemplate.postForEntity(LOCAL_HOST + PORT + POST_WRITABLE_MAPPING, tokenRequest, TokenRequest.class);
-        if (response.getStatusCode() == HttpStatus.OK) {
-            return true;
-        }
-        return false;
+        return response.getStatusCode() == HttpStatus.OK;
     }
 
     public UserResponse createUser(UserRequest userRequest) {

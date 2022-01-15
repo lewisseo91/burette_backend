@@ -6,8 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class BuretteArticleApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(BuretteArticleApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(BuretteArticleApplication.class, args);
+    }
 
 }

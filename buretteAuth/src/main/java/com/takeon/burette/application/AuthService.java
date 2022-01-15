@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class AuthService {
 
-    private JwtTokenProvider jwtTokenProvider;
+    private final JwtTokenProvider jwtTokenProvider;
 
     public AuthService(JwtTokenProvider jwtTokenProvider) {
         this.jwtTokenProvider = jwtTokenProvider;

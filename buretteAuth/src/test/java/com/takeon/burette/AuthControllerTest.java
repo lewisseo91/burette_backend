@@ -19,7 +19,7 @@ public class AuthControllerTest extends AcceptanceTest {
         String payload = "abcd123";
         ExtractableResponse<Response> res = RestAssured
                 .given().log().all()
-                .when().get("/auth/create/" +payload)
+                .when().get("/auth/create/" + payload)
                 .then().log().all()
                 .extract();
 
@@ -37,7 +37,7 @@ public class AuthControllerTest extends AcceptanceTest {
         System.out.println(token);
         ExtractableResponse<Response> res = RestAssured
                 .given().log().all()
-                .when().get("/auth/valid/" +token)
+                .when().get("/auth/valid/" + token)
                 .then().log().all()
                 .extract();
 

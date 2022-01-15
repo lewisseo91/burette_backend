@@ -28,7 +28,7 @@ public class ArticleService {
         try {
             articleRepository.deleteById(id);
             return true;
-        } catch(Exception e) {
+        } catch (Exception e) {
             return false;
         }
     }

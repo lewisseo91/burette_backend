@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/auth")
 public class AuthController {
 
-    private AuthService authService;
+    private final AuthService authService;
 
     public AuthController(AuthService authService) {
         this.authService = authService;
@@ -20,7 +20,7 @@ public class AuthController {
     public ResponseEntity healthCheck() {
         return ResponseEntity.ok().build();
     }
-    
+
     @GetMapping("/create/{id}")
     public ResponseEntity generateToken(@PathVariable String id) {
         String token = authService.createToken(id);

@@ -40,7 +40,7 @@ public class ArticleControllerTest extends AcceptanceTest {
     @Test
     void createArticleTest() {
         UserClient uc = new UserClient();
-        UserRequest userRequest = new UserRequest("abc123123","adslkfjas", "dafslkjfdas", "dfklasjfdas", "010", "000", 0, 1);
+        UserRequest userRequest = new UserRequest("abc123123", "adslkfjas", "dafslkjfdas", "dfklasjfdas", "010", "000", 0, 1);
         UserResponse responseUser = uc.createUser(userRequest);
         String token = uc.getTokenByUserId(responseUser.getUserId());
 
@@ -63,7 +63,7 @@ public class ArticleControllerTest extends AcceptanceTest {
     @Test
     void deleteArticleTest() {
         UserClient uc = new UserClient();
-        UserRequest userRequest = new UserRequest("abc123123","adslkfjas", "dafslkjfdas", "dfklasjfdas", "000", "000", 0, 1);
+        UserRequest userRequest = new UserRequest("abc123123", "adslkfjas", "dafslkjfdas", "dfklasjfdas", "000", "000", 0, 1);
         UserResponse responseUser = uc.createUser(userRequest);
         String token = uc.getTokenByUserId(responseUser.getUserId());
 

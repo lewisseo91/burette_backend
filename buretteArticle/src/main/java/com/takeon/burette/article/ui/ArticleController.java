@@ -17,16 +17,16 @@ public class ArticleController {
     @Autowired
     private ArticleService articleService;
 
-    private UserClient userClient = new UserClient();
+    private final UserClient userClient = new UserClient();
 
     @GetMapping("/test")
-    public ResponseEntity Test () {
+    public ResponseEntity Test() {
         return ResponseEntity.ok().build();
     }
 
     @PostMapping("/create")
-    public ResponseEntity<ArticleResponse> createArticle(@RequestBody ArticleRequest articleRequest, @RequestHeader (name="Authorization") String token) {
-        if(!userClient.isWritable(token)) {
+    public ResponseEntity<ArticleResponse> createArticle(@RequestBody ArticleRequest articleRequest, @RequestHeader(name = "Authorization") String token) {
+        if (!userClient.isWritable(token)) {
             return ResponseEntity.status(401).build();
         }
 
@@ -35,8 +35,8 @@ public class ArticleController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity deleteArticle(@PathVariable Long id, @RequestHeader (name="Authorization") String token) {
-        if(!userClient.isWritable(token)) {
+    public ResponseEntity deleteArticle(@PathVariable Long id, @RequestHeader(name = "Authorization") String token) {
+        if (!userClient.isWritable(token)) {
             return ResponseEntity.status(401).build();
         }
 

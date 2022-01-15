@@ -15,7 +15,7 @@ public class MainPageController {
     private MainPageService mainPageService;
 
     @GetMapping("/test")
-    public ResponseEntity Test () {
+    public ResponseEntity Test() {
         return ResponseEntity.ok().build();
     }
 

@@ -32,7 +32,7 @@ public class MainPageControllerTest extends AcceptanceTest {
     @Test
     void createMainPageTest() {
         UserClient uc = new UserClient();
-        UserRequest userRequest = new UserRequest("abc123123","adslkfjas", "dafslkjfdas", "dfklasjfdas", "010-1111-1111", "000", 0, 1);
+        UserRequest userRequest = new UserRequest("abc123123", "adslkfjas", "dafslkjfdas", "dfklasjfdas", "010-1111-1111", "000", 0, 1);
         UserResponse responseUser = uc.createUser(userRequest);
         String token = uc.getTokenByUserId(responseUser.getUserId());
 

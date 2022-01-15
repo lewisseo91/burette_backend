@@ -7,7 +7,6 @@ import com.takeon.burette.user.dto.TokenRequest;
 import com.takeon.burette.user.dto.UserRequest;
 import com.takeon.burette.user.dto.UserResponse;
 import com.takeon.burette.user.repository.UserRepository;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,7 +28,7 @@ public class UserService {
     }
 
     public String loginUser(LoginRequest loginRequest) {
-        if(!findIdAndPassword(loginRequest)) {
+        if (!findIdAndPassword(loginRequest)) {
             return null;
         }
 

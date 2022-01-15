@@ -65,7 +65,6 @@ public class Article {
         if (subTitle != null && subTitle.length() > SUBTITLE_LIMIT) return false;
         if (thumbnail != null && thumbnail.length() > THUMBNAIL_LIMIT) return false;
         if (contents != null && contents.length() > CONTENTS_LIMIT) return false;
-        if (tags != null && tags.length() > TAGS_LIMIT) return false;
-        return true;
+        return tags == null || tags.length() <= TAGS_LIMIT;
     }
 }

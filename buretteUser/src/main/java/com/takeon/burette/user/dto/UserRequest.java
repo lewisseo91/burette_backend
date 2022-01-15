@@ -4,14 +4,14 @@ import lombok.Getter;
 
 @Getter
 public class UserRequest {
-    private String userId;
-    private String password;
-    private String nickname;
-    private String email;
-    private String phoneNumber;
-    private String birthDay;
-    private int gender;
-    private int writePermission;
+    private final String userId;
+    private final String password;
+    private final String nickname;
+    private final String email;
+    private final String phoneNumber;
+    private final String birthDay;
+    private final int gender;
+    private final int writePermission;
 
     public UserRequest(String userId, String password, String nickname, String email, String phoneNumber, String birthDay, int gender, int writePermission) {
         this.userId = userId;

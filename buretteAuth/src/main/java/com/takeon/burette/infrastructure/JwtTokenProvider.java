@@ -9,10 +9,10 @@ import java.util.Date;
 public class JwtTokenProvider {
 
     //    @Value("${security.jwt.token.s}")
-    private String secretKey = "dlksagjlkdsajglkdsasdjgdasd";
+    private final String secretKey = "dlksagjlkdsajglkdsasdjgdasd";
 
     //    @Value("${security.jwt.token.e}")
-    private long expireLengthInMilliSecond = 2592000000L;
+    private final long expireLengthInMilliSecond = 2592000000L;
 
     public String createToken(String payload) {
         Claims claims = Jwts.claims().setSubject(payload);
@@ -38,7 +38,7 @@ public class JwtTokenProvider {
         try {
             Jws<Claims> claimsJws = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token);
             return !claimsJws.getBody().getExpiration().before(new Date());
-        } catch (JwtException|IllegalArgumentException e) {
+        } catch (JwtException | IllegalArgumentException e) {
 //            e.printStackTrace();
             System.out.println("invalid token");
             return false;
