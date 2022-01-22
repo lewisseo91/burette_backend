@@ -79,3 +79,8 @@ project(':buretteArticle') {
     dependencies {
     }
 }
+
+project(':buretteComment') {
+    dependencies {
+    }
+}

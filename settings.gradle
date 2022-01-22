@@ -2,3 +2,5 @@ rootProject.name = 'burette'
 include 'buretteAuth'
 include 'buretteArticle'
 include 'buretteUser'
+include 'buretteComment'
+
