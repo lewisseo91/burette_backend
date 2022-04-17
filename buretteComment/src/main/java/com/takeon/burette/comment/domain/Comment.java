@@ -1,4 +1,4 @@
-package com.takeon.burette.comment;
+package com.takeon.burette.comment.domain;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -13,8 +13,6 @@ import java.time.LocalDateTime;
 
 @Getter
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,4 +29,8 @@ public class Comment {
     private String isDeleted;
 
     private LocalDateTime deletedAt;
+
+    public void updateContent(String content) {
+        this.content = content;
+    }
 }
