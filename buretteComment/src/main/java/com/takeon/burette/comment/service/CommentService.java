@@ -5,8 +5,6 @@ import com.takeon.burette.comment.repository.CommentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 @Service
 @RequiredArgsConstructor
 public class CommentService {
@@ -14,6 +12,23 @@ public class CommentService {
 
     public void addComment(Comment comment) {
         commentRepository.save(comment);
+    }
+
+    public void addReComment(Comment parentComment, Comment comment) {
+        comment.setParentId(parentComment.getId());
+
+        commentRepository.save(comment);
+    }
+
+    public Comment updateComment(Comment comment, String content) {
+        Comment updatedComment = findById(comment.getId());
+        updatedComment.updateContent(content);
+
+        return updatedComment;
+    }
+
+    public void deleteComment(Comment comment) {
+        commentRepository.deleteById(comment.getId());
     }
 
     public Comment findById(Long commentId) {

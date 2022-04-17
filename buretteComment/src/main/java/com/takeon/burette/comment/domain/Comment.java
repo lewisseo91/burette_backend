@@ -18,6 +18,8 @@ public class Comment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private Long parentId;
+
     private Long articleId; // 직접 관계 고민해보기
 
     private String userId; // 간접
@@ -32,5 +34,9 @@ public class Comment {
 
     public void updateContent(String content) {
         this.content = content;
+    }
+
+    public void setParentId(Long id) {
+        this.parentId = id;
     }
 }
