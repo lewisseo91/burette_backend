@@ -53,6 +53,8 @@ subprojects {
         testImplementation 'io.rest-assured:json-path:4.2.0'
         testImplementation 'io.rest-assured:xml-path:4.2.0'
         testImplementation 'io.rest-assured:rest-assured-common:4.2.0'
+        testImplementation("org.junit.platform:junit-platform-launcher:1.5.2")
+        testImplementation("org.junit.jupiter:junit-jupiter:5.5.2")
 
     }
 
